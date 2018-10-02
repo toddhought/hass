@@ -1,0 +1,59 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 369
+  unit_system: imperial
+  time_zone: America/Phoenix
+
+logger:
+  default: debug
+
+# Enables the frontend
+frontend:
+
+device_tracker:
+  - platform: unifi
+    host: !secret unifi_host
+    port: !secret unifi_port
+    verify_ssl: false
+    username: !secret unifi_username
+    password: !secret unifi_password
+http:
+  api_password: !secret http_password
+  server_port: 8123
+  ssl_certificate: /config/ssl/fullchain.pem
+  ssl_key: /config/ssl/privkey.pem
+
+nest:
+  client_id: !secret nest_id
+  client_secret: !secret nest_secret
+
+cover:
+  - platform: myq
+    username: !secret cover_username
+    password: !secret cover_password
+    type: chamberlain
+
+rachio:
+  api_key: !secret rachio_key
+
+#camera:
+#  - platform: uvc
+#    nvr: 192.168.0.30
+#    key: 3Vf9BNvy8SkTBYtatHpFJm5lDGyWyW6D
+
+map:
+updater:
+discovery:
+history:
+logbook:
+sun:
+hue:
+  bridges:
+    - host: 192.168.0.236
+
+weather:
+  - platform: openweathermap
+    api_key: !secret weather_key
+    mode: hourly
