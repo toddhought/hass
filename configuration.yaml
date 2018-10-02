@@ -35,16 +35,13 @@ cover:
     password: !secret cover_password
     type: chamberlain
 
-rachio:
-  api_key: !secret rachio_key
+#rachio:
+#  api_key: !secret rachio_key
 
-#camera:
-#  - platform: uvc
-#    nvr: 192.168.0.30
-#    key: 3Vf9BNvy8SkTBYtatHpFJm5lDGyWyW6D
-
+automation:
 map:
 updater:
+config:
 discovery:
 history:
 logbook:
