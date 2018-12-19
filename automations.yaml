@@ -1,0 +1,12 @@
+- id: '1538516620347'
+  alias: garage door + lights
+  trigger:
+  - entity_id: cover.pesky_thing
+    from: Closed
+    platform: state
+    to: Open
+  condition: []
+  action:
+  - condition: state
+    entity_id: light.hallway
+    state: 'On'

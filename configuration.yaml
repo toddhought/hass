@@ -38,7 +38,7 @@ cover:
 #rachio:
 #  api_key: !secret rachio_key
 
-automation:
+automation: !include automations.yaml
 map:
 updater:
 config:
@@ -54,3 +54,38 @@ weather:
   - platform: openweathermap
     api_key: !secret weather_key
     mode: hourly
+
+media_player:
+  - platform: plex
+  - platform: webostv
+    host: 192.168.0.198
+    name: Living room TV
+    filename: webostv.conf
+    customize:
+      sources:
+        - livetv
+        - plex
+        - netflix
+
+ecovacs:
+  username: !secret ecovacs_username
+  password: !secret ecovacs_password
+  country: us
+  continent: na
+
+sabnzbd:
+  api_key: bb6daccb931f9e1949dc95aaee66f151
+  host: 192.168.0.30
+  name: sabnzbd
+  port: 8080
+  sensors:
+    - current_status
+    - disk_free
+    - queue_count
+    - speed
+camera:
+  - platform: uvc
+    nvr: 192.168.0.30
+    port: 7080
+    key: !secret uvc_key
+    password: !secret uvc_password
