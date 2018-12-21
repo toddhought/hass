@@ -1,0 +1,9 @@
+- platform: polling
+  api_key: !secret tg_api_key
+  allowed_chat_ids:
+    - !secret tg_user_thought
+    - !secret tg_user
+- platform: broadcast
+  api_key: !secret tg_api_key
+  allowed_chat_ids:
+    - !secret tg_user

@@ -5,11 +5,10 @@ homeassistant:
   elevation: 369
   unit_system: imperial
   time_zone: America/Phoenix
-
+### --- Base Modules ---
 logger:
-  default: debug
+  default: info
 
-# Enables the frontend
 frontend:
 
 device_tracker:
@@ -25,19 +24,6 @@ http:
   ssl_certificate: /config/ssl/fullchain.pem
   ssl_key: /config/ssl/privkey.pem
 
-nest:
-  client_id: !secret nest_id
-  client_secret: !secret nest_secret
-
-cover:
-  - platform: myq
-    username: !secret cover_username
-    password: !secret cover_password
-    type: chamberlain
-
-#rachio:
-#  api_key: !secret rachio_key
-
 automation: !include automations.yaml
 map:
 updater:
@@ -46,14 +32,18 @@ discovery:
 history:
 logbook:
 sun:
-hue:
-  bridges:
-    - host: 192.168.0.236
-
 weather:
   - platform: openweathermap
     api_key: !secret weather_key
     mode: hourly
+
+### --- My Stuff ---
+camera:
+  - platform: uvc
+    nvr: 192.168.0.30 
+    port: 7080
+    key: !secret uvc_key
+    password: !secret uvc_password
 
 media_player:
   - platform: plex
@@ -67,14 +57,12 @@ media_player:
         - plex
         - netflix
 
-ecovacs:
-  username: !secret ecovacs_username
-  password: !secret ecovacs_password
-  country: us
-  continent: na
+hue:
+  bridges:
+    - host: 192.168.0.236
 
 sabnzbd:
-  api_key: bb6daccb931f9e1949dc95aaee66f151
+  api_key: !secret sab_password
   host: 192.168.0.30
   name: sabnzbd
   port: 8080
@@ -83,9 +71,22 @@ sabnzbd:
     - disk_free
     - queue_count
     - speed
-camera:
-  - platform: uvc
-    nvr: 192.168.0.30
-    port: 7080
-    key: !secret uvc_key
-    password: !secret uvc_password
+
+cover:
+  - platform: myq
+    username: !secret cover_username
+    password: !secret cover_password
+    type: chamberlain
+
+nest:
+  client_id: !secret nest_id
+  client_secret: !secret nest_secret
+
+### --- Disabled stuff ---
+#ecovacs:
+#  username: !secret ecovacs_username
+#  password: !secret ecovacs_password
+#  country: us
+#  continent: na
+#telegram_bot: !include components/telegram_bot.yaml
+#notify: !include components/notify.yaml
