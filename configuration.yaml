@@ -18,6 +18,7 @@ device_tracker:
     verify_ssl: false
     username: !secret unifi_username
     password: !secret unifi_password
+    consider_home: 60
 http:
   api_password: !secret http_password
   server_port: 8123
